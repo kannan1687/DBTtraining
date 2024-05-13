@@ -1,0 +1,7 @@
+select
+  CUSTOMERNAME,
+  PRODUCTNAME,
+  sum(ORDER_SELLING_PRICE - ORDER_COST_PRICE) as PROFIT
+from
+{{ ref('Stage_Details') }}
+group by CUSTOMERNAME, PRODUCTNAME

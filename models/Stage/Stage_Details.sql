@@ -1,0 +1,18 @@
+SELECT
+O.ORDER_ID,
+O.ORDER_DATE,
+O.SHIP_DATE,
+O.SHIP_MODE,
+O.ORDER_COST_PRICE,
+O.ORDER_SELLING_PRICE,
+C.CUSTOMERNAME,
+C.SEGMENT,
+C.COUNTRY,
+C.STATE,
+P.PRODUCTNAME,
+P.SUBCATEGORY
+FROM {{ ref('ODS_Orders') }} AS O
+LEFT JOIN {{ ref('ODS_Customer') }} AS C
+ON O.customer_id = C.customerID
+LEFT JOIN {{ ref('ODS_Product') }} AS P
+ON O.product_id = P.ProductId
